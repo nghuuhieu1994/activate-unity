@@ -6,8 +6,7 @@ module.exports = { createManualActivationFile, activateManualLicense, activateSe
 async function activateSerialLicense(unityPath, username, password, serial) {
     // use '-projectPath ?' for skipping project indexing
     const stdout = await executeUnity(unityPath, `-batchmode -nographics -quit -logFile "-" -createproject "blank-project" -username "${username}" -password "${password}" -serial "${serial}"`);
-    console.log(stdout);
-    if (!stdout.includes('Next license update check is after')) {
+    if (!stdout.includes('Successfully activated ULF license')) {
         throw new Error('Activation failed');
     }
 }
